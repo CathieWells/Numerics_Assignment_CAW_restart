@@ -70,9 +70,11 @@ def LW_graph(nx,nt,condition):
     plt.ylim([-0.2,1.2])
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
     plt.xlabel('$x$')
+    plt.ylabel('$phi(x)$')
     #Save each graph to the graphs_tables folder to be used in report.
+    #Allow graph to save into graphs_tables folder.
+    #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/LW1.pdf')
+    plt.savefig('graphs_tables/LW_analysis_%d_%d_%d.pdf'%(nx,nt,condition))
 
-### Run the function main defined in this file                      ###
 LW_graph(100,100,2)
