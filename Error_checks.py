@@ -8,20 +8,20 @@ Created on Sat Nov  3 13:13:42 2018
 
 import numpy as np
 
-
+#Calculates the mean square error between analytic and modelled results.
 def l2ErrorNorm(phi, phiExact):
     "Calculates the l2 error norm (RMS error) of phi in comparison to"
     "phiExact"
     
-    # calculate the error and the RMS error norm
+    # Reads phi and phiExact in from frame file.
     phiError = phi - phiExact
     l2 = np.sqrt(sum(phiError**2)/sum(phiExact**2))
-
     return l2
 
-
+#Calculates the L inifinity norm between analytic and modelled results.
 def lInfErrorNorm(phi, phiExact):
     "Calculates the linf error norm (maximum normalised error) in comparison"
     "to phiExact"
+    #Reads phi and phiExact in from frame file.
     phiError = phi - phiExact
     return np.max(np.abs(phiError))/np.max(np.abs(phiExact))
