@@ -13,21 +13,21 @@ def LW(phiOld, c, nt):
     #Set space to follow length of initial data given.
     nx = len(phiOld)
 
-    # new time-step array for phi
+    #Sets up an array for newly calculated phi values.
     phi = phiOld.copy()
 
-    # LW for each time-step
+    # LW for each time-step using simplified equation with no half steps.
     for it in range(nt):
-        # Loop through all space using remainder after division (%)
-        # to cope with periodic boundary conditions
+        #Using mod nx on spatial positions ensures periodic boundary conditions.
         for j in range(nx):
             phi[j] = phiOld[j] - 0.5*c*\
                      (phiOld[(j+1)%nx] - phiOld[(j-1)%nx])\
                      +0.5*c**2*\
                      (phiOld[(j+1)%nx] - 2*phiOld[(j)%nx]+phiOld[(j-1)%nx])
         
-        # update arrays for next time-step
+        #Sends previous phi values to phiOld array and loops round to 
+        #calculate phi at new time step.
         phiOld = phi.copy()
-
+    #Returns phi values at each spatial step for final time step.
     return phi
 
