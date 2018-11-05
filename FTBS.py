@@ -10,21 +10,23 @@ import numpy as np
 def FTBS(phiOld, c, nt):
     "Linear advection of profile in phiOld using FTBS, Courant number c"
     "for nt time-steps"
-    #Set space to follow length of initial data given.
+    #Set number of space time steps to follow length of initial data given.
     nx = len(phiOld)
 
-    # new time-step array for phi
+    #Create an array to store the current copy of phi values at x gridpoints.
     phi = phiOld.copy()
 
-    # FTCS for each time-step
+    # For each of the nt time steps, go through the loop.
     for it in range(nt):
-        # Loop through all space using remainder after division (%)
-        # to cope with periodic boundary conditions
+        #Calculate new time step phi based on previous time step phi in
+        #current and previous positions.
+        # Use mod nx on spatial position to allow looping of values, 
+        #thus giving periodic boundary conditions.
         for j in range(nx):
             phi[j] = phiOld[j] - c*\
                      (phiOld[(j)%nx] - phiOld[(j-1)%nx])
-        
-        # update arrays for next time-step
+        #Move current results into phiOld array, to be referred to for next
+        #timestep.
         phiOld = phi.copy()
-
+    #Output phi at final timestep for all x gridpoints.
     return phi
