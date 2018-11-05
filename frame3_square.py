@@ -17,27 +17,27 @@ from CTCS import *
 from Error_checks import *
 from tabulate import tabulate
 
-### The main code is inside a function to avoid global variables    ###
-def main():
-    "Advect the initial conditions using various advection schemes and"
-    "compare results"
+#The main_square function allows all three schemes to be compared at once
+#looking at both graphing and a table of errors. 
+#Function is called using resolution parameters.
+def main_square(nx,nt):
+    "Advect the initial square wave conditions using various advection schemes"
+    "and compare results"
 
-    # Parameters
+    # Fixed parameters throughout for all three schemes.
     xmin = 0
     xmax = 1
-    nx = 40
-    nt = 40
     c = 0.2
-
+    
     # Derived parameters
     dx = (xmax - xmin)/nx
     
-    # spatial points for plotting and for defining initial conditions
+    # Spatial points for plotting and for defining initial conditions
     x = np.arange(xmin, xmax, dx)
 
     # Initial conditions
     phiOld = squareWave(x)
-    # Exact solution is the initial condition shifted around the domain
+    # Exact solution is the initial condition advected.
     phiAnalytic = squareWave((x - c*nt*dx)%(xmax - xmin))
 
     # Advect the profile using finite difference
@@ -46,15 +46,23 @@ def main():
     phiCTCS = CTCS(phiOld.copy(), c, nt)
     phiLW = LW(phiOld.copy(), c, nt)
     
-    # Calculate and print out error norms in a table.
+    # Calculate and structure error norms in a table.
     Scheme=["FTBS","CTCS","LW"]
-    l2_error=[l2ErrorNorm(phiFTBS, phiAnalytic),l2ErrorNorm(phiCTCS, phiAnalytic),l2ErrorNorm(phiLW, phiAnalytic)]
-    linf_error=[lInfErrorNorm(phiFTBS, phiAnalytic),lInfErrorNorm(phiCTCS, phiAnalytic),lInfErrorNorm(phiLW, phiAnalytic)]
+    l2_error=[l2ErrorNorm(phiFTBS, phiAnalytic),\
+    l2ErrorNorm(phiCTCS, phiAnalytic),l2ErrorNorm(phiLW, phiAnalytic)]
+    linf_error=[lInfErrorNorm(phiFTBS, phiAnalytic),\
+    lInfErrorNorm(phiCTCS, phiAnalytic),lInfErrorNorm(phiLW, phiAnalytic)]
     table=zip(Scheme,l2_error,linf_error)
-    print(tabulate(table, headers=["Scheme", "l2 error norm", "linf error norm"],floatfmt=".3f",tablefmt='orgtbl'))
     
-
-    # Plot the solutions
+    #Send table to graphs_tables folder. 
+    file=open("graphs_tables/Square_errors_%d_%d.txt"%(nx,nt),"w")
+    file.write(tabulate(table, headers=\
+    ["Scheme", "l2 error norm","linf error norm"]\
+    ,floatfmt=".3f",tablefmt='orgtbl'))
+    file.close()
+    
+    
+    # Plot the solutions for all schemes on one set of axes.
     font = {'size'   : 20}
     plt.rc('font', **font)
     plt.figure(1)
@@ -71,9 +79,13 @@ def main():
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
     plt.xlabel('$x$')
     plt.ylabel('phi(x)')
+    #Allow graph to save into graphs_tables folder.
+    #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_square_analysis.pdf')
+    plt.savefig('graphs_tables/3scheme_square_analysis_%d_%d.pdf'%(nx,nt))
+    
+main_square(40,40)
 
-### Run the function main defined in this file                      ###
-main()
+
+
 
