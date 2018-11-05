@@ -51,7 +51,7 @@ def CTCS_graph(nx,nt,condition):
         print("I do not understand your chosen initial conditions.")
         raise SystemExit
     
-    # Call in numeriucal advection code from function CTCS.
+    # Call in numerical advection code from function CTCS.
     phiCTCS= CTCS(phiOld.copy(), c, nt)
     
 
@@ -70,9 +70,11 @@ def CTCS_graph(nx,nt,condition):
     plt.ylim([-0.2,1.2])
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
     plt.xlabel('$x$')
+    plt.ylabel('$phi(x)$')
     #Save each graph to the graphs_tables folder to be used in report.
+    #Allow graph to save into graphs_tables folder.
+    #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/CTCS3.pdf')
+    plt.savefig('graphs_tables/CTCS_analysis_%d_%d_%d.pdf'%(nx,nt,condition))
 
-### Run the function main defined in this file                      ###
-CTCS_graph(40,40,2)
+CTCS_graph(100,100,1)
