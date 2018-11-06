@@ -83,7 +83,8 @@ def main_mixed(nx,nt):
     #Allow graph to save into graphs_tables folder.
     #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_mixed_analysis_%d_%d.pdf'%(nx,nt))
+    plt.savefig('graphs_tables/3scheme_mixed_analysis_%d_%d.pdf'%(nx,nt), 
+    bbox_inches = "tight")
     
 main_mixed(40,40)
     

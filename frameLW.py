@@ -75,6 +75,7 @@ def LW_graph(nx,nt,condition):
     #Allow graph to save into graphs_tables folder.
     #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/LW_analysis_%d_%d_%d.pdf'%(nx,nt,condition))
+    plt.savefig('graphs_tables/LW_analysis_%d_%d_%d.pdf'%(nx,nt,condition),
+    bbox_inches = "tight")
 
-LW_graph(100,100,2)
+LW_graph(40,40,3)

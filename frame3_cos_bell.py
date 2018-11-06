@@ -21,8 +21,8 @@ from tabulate import tabulate
 #looking at both graphing and a table of errors. 
 #Function is called using resolution parameters.
 def main_cos_bell(nx,nt):
-    "Advect the initial square wave conditions using various advection schemes"
-    "and compare results"
+    "Advect the initial cos bell wave conditions using various advection"
+    "schemes and compare results" 
 
     # Fixed parameters throughout for all three schemes.
     xmin = 0
@@ -82,10 +82,11 @@ def main_cos_bell(nx,nt):
     #Allow graph to save into graphs_tables folder.
     #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_cos_bell_analysis_%d_%d.pdf'%(nx,nt))
+    plt.savefig('graphs_tables/3scheme_cos_bell_analysis_%d_%d.pdf'%(nx,nt), 
+    bbox_inches = "tight")
 
+main_cos_bell(40,40)
 
-main_cos_bell(10,10)
 
 
 

@@ -75,6 +75,8 @@ def CTCS_graph(nx,nt,condition):
     #Allow graph to save into graphs_tables folder.
     #File name reflects resolution to avoid overwriting.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/CTCS_analysis_%d_%d_%d.pdf'%(nx,nt,condition))
+    plt.savefig('graphs_tables/CTCS_analysis_%d_%d_%d.pdf'%(nx,nt,condition), 
+    bbox_inches = "tight")
 
-CTCS_graph(100,100,1)
+CTCS_graph(40,40,3)
+

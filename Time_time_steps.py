@@ -34,6 +34,7 @@ def comp_cost():
     c = 0.2
     nx=50
     
+    
     # Derived parameters for 
     dx = (Xmax - Xmin)/nx
     
@@ -94,7 +95,8 @@ def comp_cost():
     plt.ylabel('Computational time(s)')
     #Allow graph to save into graphs_tables folder.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_time_analysis')
+    plt.savefig('graphs_tables/3scheme_time_analysis', 
+    bbox_inches = "tight")
     
 comp_cost()
 

@@ -30,4 +30,3 @@ def LW(phiOld, c, nt):
         phiOld = phi.copy()
     #Returns phi values at each spatial step for final time step.
     return phi
-
