@@ -46,31 +46,36 @@ def comp_cost():
     
     #Set up array to hold timing for each calculation.
     cost=np.zeros((3,10))
-    
+    a = np.zeros(1000)
     #Start loop to alter timesteps.
     #Compute end results for times at 10 step intervals.
     for i in range (0,10):
-        nt=i*20
+        nt=(i+1)*20
     
         # Advect the profile using finite difference
         #for all the time step variations for each of the three schemes
         #Put these results into a matrix.
         
-        start = time.time()
-        FTBS(phiOld.copy(), c, nt)
-        cost[0][i]=float(time.time()-start)
-        start = time.time()
-        CTCS(phiOld.copy(), c, nt)
-        cost[1][i]=float(time.time()-start)
-        start = time.time()
-        LW(phiOld.copy(), c, nt)
-        cost[2][i]=float(time.time()-start)
-     
-    #Print matrix to check results (not needed in final version)    
-    print(cost)
+        
+        for j in range (0,1000):
+            start = time.time()
+            FTBS(phiOld.copy(), c, nt)
+            a[j]=float(time.time()-start)
+        cost[0][i]=a.min()
+        for k in range (0,1000):
+            start = time.time()
+            CTCS(phiOld.copy(), c, nt)
+            a[k]=float(time.time()-start)
+        cost[1][i]=a.min()
+        for l in range (0,1000):
+            start = time.time()
+            FTBS(phiOld.copy(), c, nt)
+            a[l]=float(time.time()-start)
+        cost[2][i]=a.min()
+        
     
     #Define x for graph axes
-    x=np.arange(0,200,20)
+    x=np.arange(20,220,20)
     
     
     #Take each line of the matrix out as an array for plotting.
@@ -89,7 +94,7 @@ def comp_cost():
     plt.plot(x, CTCS_cost, label='CTCS', color='red')
     plt.plot(x, LW_cost, label='LW', color='green')
     plt.axhline(0, linestyle=':', color='black')
-    plt.ylim([-0.001,0.015])
+    plt.ylim([-0.001,0.007])
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
     plt.xlabel('$Time steps$')
     plt.ylabel('Computational time(s)')
