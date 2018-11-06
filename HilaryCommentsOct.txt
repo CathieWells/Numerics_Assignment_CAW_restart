@@ -1,0 +1,31 @@
+Comments from Hilary Weller on 6 Nov
+in addition to those of 26 Oct
+
+Excellent clear and correct code.
+
+You should have a .gitignore file. 
+
+Comments on file frame3_cos_bell.py
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    The doc-string to the function main_cos_bell should describe all the arguments to the function, any arguments and what is created by the function (ie plots and data tables).
+
+    You use the number 0.75 twice so this should be defined as a variable.
+
+    You need to change the argument to the function
+    plt.legend
+    so that the legend shows.
+    Type 
+    help(plt.legend)
+    in python to see how to use this command (after you have done 
+    import matplotlib.pyplot as plt)
+
+There is a lot of code duplication between files frame3_cos_bell.py and frame3_mixed.py. In fact only 7 of the 88 lines differ. 
+
+Same comment goes for frame3_square.py
+
+Same comment for frameCTCS.py, frameFTBS.py and frameLW.pyplot
+
+Function CTCS creates storage for 3 new arrays - phi, phi1 and phi2. You only need 2 new arrays because you can use phiOld (like you do in FTBS and like I did in FTCS).
+
+You are using some of my functions and files so no need to rename them.
+
