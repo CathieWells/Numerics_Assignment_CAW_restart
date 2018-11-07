@@ -1,0 +1,15 @@
+.*
+!.gitignore
+/graphs_tables/*
+/__pycache__/*
+CTCS_play.py
+Report Draft.tex
+con_attempt.py
+ctcs2.py
+frame.py
+frameL.py
+min_time.py
+play_time.py
+test.txt
+timing.py
+untitled4.py
