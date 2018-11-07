@@ -90,11 +90,11 @@ def comp_space_cost():
     plt.axhline(0, linestyle=':', color='black')
     plt.ylim([-0.001,0.012])
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
-    plt.xlabel('$Spatial steps$')
+    plt.xlabel('No. of spatial steps')
     plt.ylabel('Computational time(s)')
     #Allow graph to save into graphs_tables folder.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_time_analysis', 
+    plt.savefig('graphs_tables/3scheme_time_space_analysis', 
     bbox_inches = "tight")
     
 comp_space_cost()
