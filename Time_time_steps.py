@@ -24,15 +24,15 @@ from datetime import datetime
 #Call functions to solve each scheme to a certain number of time steps
 #for fixed spatial resolution. 
 #This means advection speed will vary as courant number is fixed.
-def comp_time_cost():
-    "Advect the initial cos bell wave conditions using various advection"
-    "schemes and compare results"
+def comp_time_cost(PhiOld,type):
+    "Advect the initial conditions fed in using various advection"
+    "schemes for given c and compare results"
 
     # Fixed parameters throughout for all three schemes.
     Xmin = 0
     Xmax = 1
-    c = 0.2
     nx=100
+    c=0.5
     
     
     # Derived parameters for 
@@ -40,9 +40,6 @@ def comp_time_cost():
     
     # Spatial points for plotting and for defining initial conditions
     X = np.arange(Xmin, Xmax, dx)
-    
-    # Initial conditions
-    phiOld = cosBell(X, 0, 0.75)
     
     #Set up array to hold timing for each calculation.
     cost=np.zeros((3,10))
@@ -100,10 +97,10 @@ def comp_time_cost():
     plt.ylabel('Computational time(s)')
     #Allow graph to save into graphs_tables folder.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_time_time_analysis', 
+    plt.savefig('graphs_tables/3scheme_time_time_analysis_%s.pdf'%(type), 
     bbox_inches = "tight")
     
-comp_time_cost()
+comp_time_cost(mixed(x,0,0.1,0.2,0.4),'mixed')
 
 
     
