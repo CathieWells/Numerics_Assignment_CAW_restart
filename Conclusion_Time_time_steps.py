@@ -104,13 +104,12 @@ def con_time_cost():
     plt.xlabel('No. of time steps')
     plt.ylabel('Computational time(s)')
 #Allow graph to save into figures folder.
-    input('press return to save file and continue')
     plt.savefig('figures/Conclusion_single_time_analysis.pdf'
                 , 
     bbox_inches = "tight")
     
     
-    # Plot the solutions for all schemes on one set of axes for min over 100.
+# Plot the solutions for all schemes on one set of axes for min over 100.
     font = {'size'   : 20}
     plt.rc('font', **font)
     plt.figure(1)
@@ -127,8 +126,7 @@ def con_time_cost():
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
     plt.xlabel('No. of time steps')
     plt.ylabel('Computational time(s)')
-    #Allow graph to save into figures folder.
-    input('press return to save file and continue')
+#Allow graph to save into figures folder.
     plt.savefig('figures/Conclusion_100min_time_analysis.pdf', 
     bbox_inches = "tight")
     return()
