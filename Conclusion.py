@@ -126,11 +126,9 @@ def con_square(nx,nt,c):
 #Allow graph to save into figures folder.
 #File name reflects resolution to avoid overwriting.
     plt.savefig('figures/conclusion_min_max_square_analysis_%d.pdf'%(nx), 
-    bbox_inches = "tight")
-    
+    bbox_inches = "tight") 
 
     return()
-con_square(40,80,0.5)
 
 
 
