@@ -14,7 +14,6 @@ from Initial_conditions import *
 from LW import *
 from FTBS import *
 from CTCS import *
-from WB import *
 from Error_checks import *
 from tabulate import tabulate
 
@@ -46,7 +45,6 @@ def main_square(nx,nt,c):
     phiFTBS = FTBS(phiOld.copy(), c, nt)
     phiCTCS = CTCS(phiOld.copy(), c, nt)
     phiLW = LW(phiOld.copy(), c, nt)
-    phiWB = WandB(phiOld.copy(), c, nt)
     
 # Calculate and structure error norms in a table.
     Scheme=["FTBS","CTCS","LW"]
