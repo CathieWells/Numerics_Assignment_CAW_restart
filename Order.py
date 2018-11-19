@@ -99,12 +99,6 @@ def error_graph(c,initial_condition,condition,u):
     return()
 
 
-error_graph(0.3,lambda X:cosBell(X,0,0.75),'cos',2)
-error_graph(0.9,lambda X:cosBell(X,0,0.75),'cos',2)
-error_graph(0.3,lambda X:cosBell(X,0,0.75),'cos',0.3)
-error_graph(0.9,lambda X:cosBell(X,0,0.75),'cos',0.9)
-error_graph(0.2,lambda X:cosBell(X,0,0.75),'cos',4)
-error_graph(0.8,lambda X:cosBell(X,0,0.75),'cos',4)
 
 
 
