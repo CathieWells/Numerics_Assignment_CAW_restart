@@ -130,8 +130,7 @@ def con_time_cost():
     plt.savefig('figures/Conclusion_100min_time_analysis.pdf', 
     bbox_inches = "tight")
     return()
-con_time_cost()
-    
+
 
 
     
