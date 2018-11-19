@@ -41,7 +41,7 @@ def comp_time_cost(type):
   
 #Set up array to hold timing for each calculation.
     cost=np.zeros((6,10))
-    a = np.zeros(100)
+    a = np.zeros(20)
 #Specifiy initial conditions to use for input name.
     if type=='square':
         phiOld = squareWave(x)
@@ -67,17 +67,17 @@ def comp_time_cost(type):
 #Put timings for each time step into an array.
 #Put minimum time from each array into a 2D array.
         
-        for j in range (0,100):
+        for j in range (0,20):
             start = time.time()
             FTBS(phiOld.copy(), c, nt)
             a[j]=float(time.time()-start)
         cost[0][i]=a.min()
-        for k in range (0,100):
+        for k in range (0,20):
             start = time.time()
             CTCS(phiOld.copy(), c, nt)
             a[k]=float(time.time()-start)
         cost[1][i]=a.min()
-        for l in range (0,100):
+        for l in range (0,20):
             start = time.time()
             LW(phiOld.copy(), c, nt)
             a[l]=float(time.time()-start)
@@ -105,7 +105,6 @@ def comp_time_cost(type):
     plt.xlabel('No. of time steps')
     plt.ylabel('Computational time(s)')
 #Allow graph to save into figures folder.
-    input('press return to save file and continue')
     plt.savefig('figures/3scheme_single_time_analysis_%s.pdf'%(type), 
     bbox_inches = "tight")
     
@@ -128,7 +127,6 @@ def comp_time_cost(type):
     plt.xlabel('No. of time steps')
     plt.ylabel('Computational time(s)')
 #Allow graph to save into figures folder.
-    input('press return to save file and continue')
     plt.savefig('figures/3scheme_100min_time_analysis_%s.pdf'%(type), 
     bbox_inches = "tight")
     return()
