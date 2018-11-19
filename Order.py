@@ -94,7 +94,6 @@ def error_graph(c,initial_condition,condition,u):
     plt.yscale('log')
 #Allow graph to save into figures folder.
 #File name reflects resolution to avoid overwriting.
-    input('press return to save file and continue')
     plt.savefig('figures/Error_analysis_%d_%d_%s.pdf'%(100*c,10*u,condition), 
     bbox_inches = "tight")
     return()
