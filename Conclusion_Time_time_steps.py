@@ -43,7 +43,7 @@ def con_time_cost():
   
 #Set up array to hold timing for each calculation.
     cost=np.zeros((6,10))
-    a = np.zeros(100)
+    a = np.zeros(20)
     
 #Start loop to alter timesteps.
 #Compute end results for times at 20 step intervals.
@@ -66,17 +66,17 @@ def con_time_cost():
 #Put timings for each time step into an array.
 #Put minimum time from each array into a 2D array.
         
-        for j in range (0,100):
+        for j in range (0,20):
             start = time.time()
             LW(phiOld.copy(), c, nt)
             a[j]=float(time.time()-start)
         cost[0][i]=a.min()
-        for k in range (0,100):
+        for k in range (0,20):
             start = time.time()
             WB(phiOld.copy(), c, nt)
             a[k]=float(time.time()-start)
         cost[1][i]=a.min()
-        for l in range (0,100):
+        for l in range (0,20):
             start = time.time()
             Combi(phiOld.copy(), c, nt)
             a[l]=float(time.time()-start)
