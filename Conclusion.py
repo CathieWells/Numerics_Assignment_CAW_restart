@@ -93,7 +93,6 @@ def con_square(nx,nt,c):
     plt.ylabel('phi(x)')
 #Allow graph to save into graphs_tables folder.
 #File name reflects resolution to avoid overwriting.
-    input('press return to save file and continue')
     plt.savefig('figures/conclusion_square_analysis_%d_%d.pdf'%(nx,nt), 
     bbox_inches = "tight")
     
@@ -126,7 +125,6 @@ def con_square(nx,nt,c):
     plt.ylabel('phi(x)')
 #Allow graph to save into figures folder.
 #File name reflects resolution to avoid overwriting.
-    input('press return to save file and continue')
     plt.savefig('figures/conclusion_min_max_square_analysis_%d.pdf'%(nx), 
     bbox_inches = "tight")
     
