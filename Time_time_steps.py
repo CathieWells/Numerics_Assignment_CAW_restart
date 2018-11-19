@@ -130,10 +130,7 @@ def comp_time_cost(type):
     plt.savefig('figures/3scheme_100min_time_analysis_%s.pdf'%(type), 
     bbox_inches = "tight")
     return()
-    
-comp_time_cost('cos')
-comp_time_cost('square')
-    
+
 
 
     
