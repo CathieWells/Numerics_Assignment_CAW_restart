@@ -11,7 +11,7 @@ Created on Fri Nov  9 09:08:52 2018
 #All files will be sent to a folder called "figures"
 from Conclusion_Time_time_steps import *
 from Conclusion import *
-from frame import *
+from frame_all import *
 from Order import *
 from Time_time_steps import *
 main(10,40,0.8,"square")
