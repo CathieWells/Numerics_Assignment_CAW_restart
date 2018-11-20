@@ -19,20 +19,22 @@ from tabulate import tabulate
 
 
 #Function to find rate of convergence for bell and square waves.
-def con_table():
+def con_graph():
     "Advect bell and square initial conditions using various advection"
     "schemes and compare results for rates of convergence" 
 
     # Fixed parameters throughout for all three schemes.
     xmin = 0
-    xmax = 1
+    xmax = 10
     c = 0.2
     nx=100
-    nt=100
+    Totalt=10
+    u=2
     
     # Derived parameters
+     error_space[0]=np.arange(0.01,0.21,0.01)
     dx = (xmax - xmin)/nx
-    
+    dt = c*dx/u
     # Spatial points for plotting and for defining initial conditions
     x = np.arange(xmin, xmax, dx)
     #Set up array for convergence results from loop.

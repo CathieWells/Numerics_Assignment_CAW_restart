@@ -23,14 +23,14 @@ from datetime import datetime
 #Call functions to solve each scheme to a fixed number of time steps
 #for varied spatial resolution. 
 #This means advection speed will vary as courant number is fixed.
-def comp_space_cost():
+def comp_space_cost(phiOld,type):
     "Advect the initial cos bell wave conditions using various advection"
     "schemes and compare results"
 
     # Fixed parameters throughout for all three schemes.
-    Xmin = 0
-    Xmax = 1
-    c = 0.2
+    xmin = 0
+    xmax = 1
+    c = 0.5
     nt=100
     
     
@@ -42,11 +42,10 @@ def comp_space_cost():
     for i in range (0,10):
         nx=(i+1)*20
         # Derived parameter now varies
-        dx = (Xmax - Xmin)/nx
+        dx = (xmax - xmin)/nx
         # Spatial points for plotting and for defining initial conditions
-        X = np.arange(Xmin, Xmax, dx)
-        # Initial conditions
-        phiOld = cosBell(X, 0, 0.75)
+        x = np.arange(xmin, xmax, dx)
+        
         # Advect the profile using finite difference
         #for all the time step variations for each of the three schemes
         #Put these results into a matrix.
@@ -63,13 +62,13 @@ def comp_space_cost():
         cost_space[1][i]=a.min()
         for l in range (0,100):
             start = time.time()
-            FTBS(phiOld.copy(), c, nt)
+            LW(phiOld.copy(), c, nt)
             a[l]=float(time.time()-start)
         cost_space[2][i]=a.min()
-        
+    print(cost_space)
     
     #Define x for graph axes
-    x=np.arange(20,220,20)
+    X=np.arange(20,220,20)
     
     
     #Take each line of the matrix out as an array for plotting.
@@ -84,9 +83,9 @@ def comp_space_cost():
     plt.figure(1)
     plt.clf()
     plt.ion()
-    plt.plot(x,FTBS_cost_space , label='FTBS', color='blue')
-    plt.plot(x, CTCS_cost_space, label='CTCS', color='red')
-    plt.plot(x, LW_cost_space, label='LW', color='green')
+    plt.plot(X,FTBS_cost_space , label='FTBS', color='blue')
+    plt.plot(X, CTCS_cost_space, label='CTCS', color='red')
+    plt.plot(X, LW_cost_space, label='LW', color='green')
     plt.axhline(0, linestyle=':', color='black')
     plt.ylim([-0.001,0.012])
     plt.legend(bbox_to_anchor=(1.15 , 1.1))
@@ -94,11 +93,10 @@ def comp_space_cost():
     plt.ylabel('Computational time(s)')
     #Allow graph to save into graphs_tables folder.
     input('press return to save file and continue')
-    plt.savefig('graphs_tables/3scheme_time_space_analysis', 
+    plt.savefig('graphs_tables/3scheme_time_space_analysis_%s.pdf'%(type), 
     bbox_inches = "tight")
     
-comp_space_cost()
-
+comp_space_cost(squareWave(x),'square')
 
 
     
